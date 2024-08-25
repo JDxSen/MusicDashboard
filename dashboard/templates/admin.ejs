@@ -1,0 +1,47 @@
+<%- include("partials/header", { djsClient, user, path, title: 'Admin Panel' }) %>
+<% function uptime (ms) {
+  let totalSeconds = (ms / 1000)
+  const days = Math.floor(totalSeconds / 86400)
+  totalSeconds %= 86400
+  const hours = Math.floor(totalSeconds / 3600)
+  totalSeconds %= 3600
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = Math.floor(totalSeconds % 60)
+  return `Uptime: ${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`
+} %>
+
+<div class="card col-sm-10 offset-sm-1">
+  <header class="card-header">
+    <div><i class="fas fa-list"></i> Admin Panel</div>
+  </header>
+  <div class="card-body">
+    <h5><%= uptime(djsClient.uptime) %></h5>
+    <h5>Playing in <%= djsClient.lavalink.manager.players.size %> server(s).</h5>
+    <div class="table-responsive">
+      <table class="table table-dark">
+        <thead>
+        <tr>
+          <th>Icon</th>
+          <th>Guild</th>
+          <th>Members</th>
+          <th>Channels</th>
+          <th>Joined</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% djsClient.guilds.cache.clone().sort((a, b) => { return a.joinedAt.getTime() - b.joinedAt.getTime() }).forEach(guild => { %>
+          <tr>
+            <td class="align-middle" style="width: 1%"><a href="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=1024` : '/assets/img/generic_server.png' %>" rel="noreferrer" target="_blank"><img src="<%= guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}?size=1024` : '/assets/img/generic_server.png' %>" style="height: 30px <%- djsClient.lavalink.getPlayer(guild.id) ? '; border: 2px solid #6cff57' : '' %> "></a></td>
+            <td class="align-middle" style="width: 60%"><span class="text-nowrap"><%= guild.name %></span></td>
+            <td class="align-middle"><span class="text-nowrap"><%= guild.memberCount %></span></td>
+            <td class="align-middle"><span class="text-nowrap"><%= guild.channels.channelCountWithoutThreads %></span></td>
+            <td class="align-middle" style="width: 1%"><span class="text-nowrap"><%= guild.joinedAt.toUTCString() %></span></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

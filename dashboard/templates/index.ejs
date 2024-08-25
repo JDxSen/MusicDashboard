@@ -1,0 +1,120 @@
+<div class="alert alert-danger alert-dismissible fade show" style="width: 80%; position: fixed; top: 80px; left: 10%;">
+  <div style="display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: left; gap: 10px;">
+    <i class="far fa-exclamation-triangle fa-2x"></i>
+    <span style="font-size: 1em; margin-left: 5px">Due to new policies by Discord disallowing bots to play videos from YouTube, SuitBot will not be verified anymore.<br>This means that it will be unable to join more than 100 servers.<br>I'm currently working on creating a new bot that will allow users to self-host their own instance.</span>
+  </div>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<%- include("partials/header", { djsClient, user, path, title: "SuitBot" }) %>
+
+<div class="container" style="margin: 0; padding-top: 2%">
+  <div class="row align-items-center">
+    <div class="col" style="max-width: 500px"><img src="/assets/img/suit.png" style="width: 100%;"></div>
+    <div class="col">
+      <h1 class="title" style="font-family: 'Bebas Neue', sans-serif; font-size: 50px;">SuitBot<br>Dashboard</h1>
+      <div style="font-size: 20px; margin-bottom: 20px; white-space: nowrap">Serving <b><%- djsClient.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0) %></b> users <br class="d-lg-none">in <b><%- djsClient.guilds.cache.size %></b> servers.</div>
+      <a class="dashboard-button btn btn-lg btn-secondary btn-block rounded-pill" href="/dashboard"><i class="fas fa-columns"></i> Dashboard</a>
+    </div>
+  </div>
+</div>
+<div class="container" style="max-width: 1000px; margin-top: 150px;">
+  <div style="font-family: 'Bebas Neue', sans-serif; font-size: 50px; text-align: center;">Features</div>
+  <hr>
+  <div class="container">
+    <span class="category-title">Slash Commands</span>
+    <ul>
+      <li>Use commands directly integrated in Discord</li>
+      <li>No more guessing with variables</li>
+      <li>Quick overview of all commands</li>
+    </ul>
+    <img src="/assets/img/slash_commands.png" style="width: 100%;">
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <span class="category-title">Music</span>
+        <ul>
+          <li>Supports many sources (YouTube, Spotify, Bandcamp, SoundCloud, Twitch, Vimeo or any other HTTP source)</li>
+          <li>Supports playlists and livestreams</li>
+          <li>Interactive Web Dashboard</li>
+          <li>Pause, Skip, Remove, Volume and more commands</li>
+        </ul>
+      </div>
+      <div class="col">
+        <img src="/assets/img/music.png" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <span class="category-title">Language support</span>
+        <ul>
+          <li>Supports multiple languages</li>
+          <li>Change the language for your server using "/language"</li>
+          <li>Add your own language by contacting me on the Discord server</li>
+        </ul>
+      </div>
+      <div class="col">
+        <img src="/assets/img/language.png" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <span class="category-title">Activities</span>
+        <ul>
+          <li>Create invites for Discord Activities</li>
+          <li>YouTube Together and a lot of fun minigames</li>
+          <li>Have fun with everyone in your voice channel</li>
+        </ul>
+      </div>
+      <div class="col">
+        <img src="/assets/img/activities.png" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <span class="category-title">Basic Moderation</span>
+        <ul>
+          <li>Info commands (User, Server, Avatar)</li>
+          <li>Kick, Ban, Move, Slowmode and more commands</li>
+          <li>Permission check on commands</li>
+        </ul>
+      </div>
+      <div class="col">
+        <img src="/assets/img/moderation.png" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <span class="category-title">More Features</span>
+    <ul>
+      <li>Request any features you'd like to see with /suggestion</li>
+      <li>Found a bug? Report it with /bugreport</li>
+      <li>Check the GitHub repository to see what features are planned!</li>
+    </ul>
+  </div>
+  <hr>
+  <div class="container">
+    <span class="category-title">All Commands</span><br>
+    <a href="/commands"><i class="fas fa-list"></i> Commands</a>
+  </div>
+</div>
+<footer style="margin-top: 60px;">
+  <div class="text-center p-3" style="background-color: var(--background); filter: brightness(50%); color: var(--text-color)">
+    © 2022 Copyright: <a class="text-light" href="https://suitbot.xyz">suitbot.xyz</a>
+    <br><a class="text-light" href="/terms">Terms of Service</a>
+    <br><a class="text-light" href="/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+<%- include("partials/footer") %>
